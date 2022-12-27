@@ -6,13 +6,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lista Telefonica</title>
 
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"
+      integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      .jumbotron {
+        width: 400px;
+        text-align: center;
+        margin-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 40px;
+      }
+
+      table tr th {
+        text-align: center;
+      }
+      .form-control {
+        margin-bottom: 5px;
+      }
+    </style>
+
     <script src="lib/angular/angular.js"></script>
 
     <script>
       angular.module('listaTelefonica', [])
+      angular
+        .module('listaTelefonica')
+        .controller('listaTelefonicaController', function ($scope) {
+          $scope.app = 'Lista Telefonica'
+          $scope.contatos = [
+            { nome: 'Pedro', telefone: '99988898' },
+            { nome: 'Ana', telefone: '99964598' },
+            { nome: 'Maria', telefone: '99933333' }
+          ]
+          $scope.adicionarContato = function (contato) {
+            $scope.contatos.push(angular.copy(contato))
+            console.log($scope.contato)
+          }
+        })
     </script>
   </head>
-  <body>
-    <h1>Hellow</h1>
+  <body ng-controller="listaTelefonicaController">
+    <div class="jumbotron">
+      <h3>{{app}}</h3>
+      <table class="table table-striped">
+        <tr>
+          <th>Nome</th>
+          <th>Telefone</th>
+        </tr>
+        <tr ng-repeat="contato in contatos">
+          <td>{{contato.nome}}</td>
+          <td>{{contato.telefone}}</td>
+        </tr>
+      </table>
+
+      <input
+        class="form-control"
+        type="text"
+        ng-model="contato.nome"
+        placeholder="Nome"
+      />
+      <input
+        class="form-control"
+        type="text"
+        ng-model="contato.telefone"
+        placeholder="Telefone"
+      />
+      <button
+        class="btn btn-primary btn-block"
+        ng-click="adicionarContato(contato)"
+      >
+        Adicionar Contato
+      </button>
+    </div>
   </body>
 </html>
