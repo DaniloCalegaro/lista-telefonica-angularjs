@@ -72,7 +72,7 @@
             console.log($scope.contatos)
           }
           $scope.isContatoSelecionado = function (contatos) {
-            return !(isContatoSelecionado = contatos.some(
+            return (isContatoSelecionado = contatos.some(
               contato => contato.selecionado
             ))
           }
@@ -82,7 +82,7 @@
   <body ng-controller="listaTelefonicaController">
     <div class="jumbotron">
       <h3>{{app}}</h3>
-      <table class="table">
+      <table class="table" ng-show="contatos.length > 0">
         <tr>
           <th></th>
           <th>Nome</th>
@@ -132,11 +132,12 @@
       <button
         class="btn btn-danger btn-block"
         ng-click="apagarContatos(contatos)"
-        ng-disabled="isContatoSelecionado(contatos)"
+        ng-show="isContatoSelecionado(contatos)"
       >
         Apagar Contato
       </button>
       <!-- {{contatos}} -->
     </div>
+    <div ng-include="'footer.html'"></div>
   </body>
 </html>
