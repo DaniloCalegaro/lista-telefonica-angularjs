@@ -79,26 +79,31 @@
               contato => contato.selecionado
             ))
           }
+          $scope.ordenarPor = function (campo) {
+            $scope.criterioDeOrdenacao = campo
+            $scope.direcaoOrdenacao = !$scope.direcaoOrdenacao
+          }
         })
     </script>
   </head>
   <body ng-controller="listaTelefonicaController">
     <div class="jumbotron">
       <h3>{{app}}</h3>
+      <input class="form-control" type="text" ng-model="criterioDeBusca" placeholder="O que você esta buscando?"/>
       <table class="table" ng-show="contatos.length > 0">
         <tr>
           <th></th>
-          <th>Nome</th>
-          <th>Telefone</th>
+          <th><a href="" ng-click="ordenarPor('nome')">Nome</a> </th>
+          <th><a href="" ng-click="ordenarPor('telefone')">Telefone</a></th>
           <th>Operadora</th>
           <th></th>
         </tr>
         <tr
           ng-class="{'selecionado negrito': contato.selecionado}"
-          ng-repeat="contato in contatos"
+          ng-repeat="contato in contatos | filter: {nome: criterioDeBusca} | orderBy: criterioDeOrdenacao: direcaoOrdenacao"
         >
           <td><input type="checkbox" ng-model="contato.selecionado" /></td>
-          <td>{{contato.nome}}</td>
+          <td>{{contato.nome | uppercase}}</td>
           <td>{{contato.telefone}}</td>
           <td>{{contato.operadora.nome}}</td>
           <td ng-style="{'background-color': contato.cor}"><div></div></td>
@@ -127,7 +132,7 @@
         <select
           class="form-control"
           ng-model="contato.operadora"
-          ng-options="operadora.nome group by operadora.categoria for operadora in operadoras"
+          ng-options="operadora.nome group by operadora.categoria for operadora in operadoras | orderBy: 'nome'"
         >
           >
           <option value="">Selecione uma operadora</option>
