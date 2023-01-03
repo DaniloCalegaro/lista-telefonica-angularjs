@@ -28,6 +28,7 @@ angular
 
         $scope.adicionarContato = function (contato) {
             contato.serial = serialGenerator.generate();
+            contato.data = new Date();
 
             $scope.contatos.push(angular.copy(contato));
             delete $scope.contato;
