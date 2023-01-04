@@ -6,19 +6,19 @@ var app = express();
 
 var contatos = [
     {
-        nome: 'Bruno',
+        nome: 'bruno da silva',
         telefone: '9999-2222',
         data: new Date(),
         operadora: { nome: 'Oi', codigo: 14, categoria: 'Celular' }
     },
     {
-        nome: 'Sandra',
+        nome: 'Sandra Tengo',
         telefone: '9999-3333',
         data: new Date(),
         operadora: { nome: 'Vivo', codigo: 15, categoria: 'Celular' }
     },
     {
-        nome: 'Mariana',
+        nome: 'mariana Mendes oliveira',
         telefone: '9999-9999',
         data: new Date(),
         operadora: { nome: 'Tim', codigo: 41, categoria: 'Celular' }
