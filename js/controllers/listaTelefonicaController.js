@@ -6,9 +6,14 @@ angular
         $scope.operadoras = [];
 
         var carregarContatos = function () {
-            contatosAPI.getContatos().then(function (response, status) {
-                $scope.contatos = response.data;
-            });
+            contatosAPI.getContatos().then(
+                function successCallback(response) {
+                    $scope.contatos = response.data;
+                },
+                function errorCallback(response) {
+                    $scope.error = 'Não foi possivel carregar os dados';
+                }
+            );
         };
 
         var carregarOperadoras = function () {

@@ -13,6 +13,7 @@
             crossorigin="anonymous"
         />
         <link rel="stylesheet" href="css/app.css" />
+        <link rel="stylesheet" href="css/ui.css" />
 
         <script src="lib/angular/angular.js"></script>
         <script src="lib/angular/angular-messages.js"></script>
@@ -31,11 +32,15 @@
 
         <script src="js/filters/nameFilter.js"></script>
         <script src="js/filters/ellipsisFilter.js"></script>
+
+        <script src="js/directives/uiAlertDirective.js"></script>
     </head>
     <body ng-controller="listaTelefonicaController">
         <div class="jumbotron">
             <h3>{{app}}</h3>
-            {{message}}
+
+            <ui-alert title="Ops, aconteceu um problema!" message="error"> {{error}} </ui-alert>
+
             <input
                 class="form-control"
                 type="text"

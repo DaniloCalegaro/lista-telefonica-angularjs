@@ -22,5 +22,4 @@ E finalmente executar o `index.html` com a extenção Live Server do VSCode.
 
 ## Autor
 
------
 Danilo Calegaro - [danilocalegaro.dev.br](https://danilocalegaro.dev.br/)
